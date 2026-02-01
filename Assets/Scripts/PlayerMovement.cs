@@ -11,7 +11,6 @@ public class PlayerMovement : NetworkBehaviour
         if (!IsOwner || !IsSpawned) return;
 
         Vector3 movement = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0) * moveSpeed * Time.deltaTime;
-        print(movement);
         transform.Translate(movement);
     }
 }
