@@ -11,25 +11,31 @@ public class SpawnManager : NetworkBehaviour
     {
         if(IsServer)
         {
-            if (NetworkManager.Singleton.ConnectedClients.Count % 2 == 0)
-            {
-                SpawnSeeker();
-            }
-            else
-            {
-                SpawnHider();
-            }
+            NetworkManager.Singleton.OnClientConnectedCallback += OnClientConnected;
         }
     }
 
-    private void SpawnHider()
+    private void OnClientConnected(ulong clientId)
+    {
+        int totalClients = NetworkManager.Singleton.ConnectedClients.Count;
+        if (totalClients % 2 == 0)
+        {
+            SpawnSeeker(clientId);
+        }
+        else
+        {
+            SpawnHider(clientId);
+        }
+    }
+
+    private void SpawnHider(ulong ownerClientId)
     {
         GameObject hider = Instantiate(hiderPrefab, Vector2.zero, Quaternion.identity);
-        hider.GetComponent<NetworkObject>().Spawn();
+        hider.GetComponent<NetworkObject>().SpawnWithOwnership(ownerClientId);
     }
-    private void SpawnSeeker()
+    private void SpawnSeeker(ulong ownerClientId)
     {
         GameObject seeker = Instantiate(seekerPrefab, Vector2.zero, Quaternion.identity);
-        seeker.GetComponent<NetworkObject>().Spawn();
+        seeker.GetComponent<NetworkObject>().SpawnWithOwnership(ownerClientId);
     }
 }

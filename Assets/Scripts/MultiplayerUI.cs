@@ -10,24 +10,25 @@ using UnityEngine.Rendering;
 
 public class MultiplayerUI : MonoBehaviour
 {
-    [SerializeField] Button hostBtn, joinBtn, dscBtn;
+    [SerializeField] Button hostBtn, joinBtn, dscBtn, helpBtn;
     [SerializeField] TMPro.TMP_InputField ipInput, portInput, nameInput;
     [SerializeField] string setIP;
-    GameObject cm;
-
     void Awake()
     {
-        cm = GameObject.FindWithTag("Chat Manager");
         hostBtn.onClick.AddListener( delegate { NetworkManager.Singleton.StartHost(); } );
         joinBtn.onClick.AddListener( delegate { NetworkManager.Singleton.StartClient(); } );
         dscBtn.onClick.AddListener( delegate { NetworkManager.Singleton.Shutdown(); } );
         ipInput.onEndEdit.AddListener( delegate { NetworkManager.Singleton.GetComponent<Unity.Netcode.Transports.UTP.UnityTransport>().SetConnectionData(ipInput.text, ushort.Parse(portInput.text)); } );
         portInput.onEndEdit.AddListener( delegate { NetworkManager.Singleton.GetComponent<Unity.Netcode.Transports.UTP.UnityTransport>().SetConnectionData(ipInput.text, ushort.Parse(portInput.text)); } );
-        nameInput.onEndEdit.AddListener( delegate { cm.GetComponent<ChatManager>().SetPlayerName(nameInput.text); } );
+        nameInput.onEndEdit.AddListener( delegate { ChatManager.Singleton.SetPlayerName(nameInput.text); } );
+        nameInput.onEndEdit.AddListener( delegate { PlayerPrefs.SetString("name", nameInput.text); PlayerPrefs.Save(); } );
+        helpBtn.onClick.AddListener( delegate {Application.OpenURL("https://en.wikipedia.org/wiki/Port_forwarding");});
     }
     void Start()
     {
         ipInput.text =  GetLocalIPAddress(); 
+        nameInput.text = PlayerPrefs.GetString("name", "Player");
+        ChatManager.Singleton.SetPlayerName(nameInput.text);
     }
     public string GetLocalIPAddress()
     {
