@@ -13,10 +13,7 @@ public class CameraController : MonoBehaviour
     void Start()
     {
         cam = GetComponent<Camera>();
-        if (Camera.main != null)
-        {
-            cam.enabled = false;
-        }
+        
         NetworkObject playerNetworkObject = GetComponentInParent<NetworkObject>();
         
         if (playerNetworkObject != null && !playerNetworkObject.IsOwner)
