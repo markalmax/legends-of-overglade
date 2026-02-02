@@ -172,7 +172,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
   ShowTopMostFoldoutHeaderGroup: 1
-  moveSpeed: 5
+  moveSpeed: 10
 --- !u!114 &-6419149477536997005
 MonoBehaviour:
   m_ObjectHideFlags: 0

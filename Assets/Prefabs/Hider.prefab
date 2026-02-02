@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8748569267602220985, guid: ef022e84d3332a442b01ddf74bd3db99, type: 3}
       propertyPath: GlobalObjectIdHash
-      value: 3386543359
+      value: 4275830334
       objectReference: {fileID: 0}
     - target: {fileID: -8748569267602220985, guid: ef022e84d3332a442b01ddf74bd3db99, type: 3}
       propertyPath: SceneMigrationSynchronization
@@ -30,7 +30,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6893700824307563834, guid: ef022e84d3332a442b01ddf74bd3db99, type: 3}
       propertyPath: m_Name
-      value: Circle Variant
+      value: Hider
       objectReference: {fileID: 0}
     - target: {fileID: 7308644420581256318, guid: ef022e84d3332a442b01ddf74bd3db99, type: 3}
       propertyPath: m_LocalPosition.x
@@ -97,3 +97,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ddf0bedb5e8dad449295deb8cd38a61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  dashSpeed: 20
+  dashDuration: 0.3
+  dashCooldown: 4

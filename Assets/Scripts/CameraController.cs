@@ -22,6 +22,8 @@ public class CameraController : MonoBehaviour
             GetComponent<AudioListener>().enabled = false;
             enabled = false;
         }
+
+        Cursor.lockState = CursorLockMode.Confined;
     }
     
     
